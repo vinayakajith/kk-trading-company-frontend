@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <!-- Background matching the theme's deep brown -->
+    <rect width="512" height="512" rx="100" fill="#3B3128"/>
+    <!-- KK text matching the theme's main green, positioned centrally -->
+    <text x="50%" y="54%" font-family="'Playfair Display', Georgia, serif" font-weight="700" font-size="280" fill="#3D6B5A" text-anchor="middle" dominant-baseline="middle" letter-spacing="-5">KK</text>
+</svg>
