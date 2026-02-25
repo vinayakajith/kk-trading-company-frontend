@@ -534,7 +534,8 @@ img {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
+    /* Reduced from 3rem */
 }
 
 .product-card {
@@ -622,20 +623,24 @@ img {
 .process-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .process-step {
-    padding: 2rem 1.5rem;
-    background-color: rgba(255, 255, 255, 0.03);
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    text-align: center;
-    transition: var(--transition);
+    padding: 1.5rem 1.2rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    /* richer contrast from bg */
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    /* sharper corners */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.3s ease;
 }
 
 .process-step:hover {
-    background-color: rgba(255, 255, 255, 0.06);
     transform: translateY(-5px);
 }
 
@@ -643,32 +648,33 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    /* reduced slightly from original 48px */
+    height: 40px;
     border-radius: 50%;
     background-color: var(--clr-green-main);
     color: var(--clr-white);
     font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .process-step h4 {
     font-family: var(--font-body);
-    font-size: 1.05rem;
+    font-size: 1.1rem;
+    /* reduced from 1.2rem for less Cramp */
+    line-height: 1.35;
     font-weight: 600;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
     color: var(--clr-white);
 }
 
 .process-step p {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.75);
     margin: 0;
-    line-height: 1.6;
-    padding-bottom: 0.5rem;
-    /* prevent truncation on mobile */
+    line-height: 1.5;
 }
 
 /* ============================================
@@ -1150,7 +1156,7 @@ img {
         flex-wrap: nowrap;
         overflow-x: auto;
         gap: 1rem;
-        padding-bottom: 2rem;
+        padding-bottom: 1rem;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
@@ -1175,20 +1181,13 @@ img {
     /* Process grid to single col */
     .process-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .process-step {
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        gap: 1.2rem;
-        align-items: flex-start;
-        padding: 2rem 1.5rem;
-    }
-
-    .process-step:last-child {
-        padding-bottom: 3.5rem;
-        /* prevent back-to-top overlap on mobile */
+        gap: 0.8rem;
+        padding: 1.2rem 1rem;
+        /* tightly wrapped on mobile */
     }
 
     .step-number {
@@ -1256,11 +1255,18 @@ img {
 
     /* Removed manual visual break since spices have alternating background */
 
+    .process-step h4 {
+        font-size: 1.15rem;
+        /* softer bold */
+        line-height: 1.4;
+        margin-bottom: 0.3rem;
+    }
+
     .process-step p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         line-height: 1.5;
         max-width: 100%;
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, 0.75);
     }
 
     /* Contact Order Adjustment */
