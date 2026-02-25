@@ -211,46 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     counters.forEach(counter => counterObserver.observe(counter));
 
-    // ==========================================
-    // Hero image parallax (subtle)
-    // ==========================================
-    const heroImg = document.querySelector('.hero-img-main');
-
-    if (heroImg && window.innerWidth > 768) {
-        window.addEventListener('scroll', () => {
-            const y = window.scrollY;
-            if (y < window.innerHeight) {
-                const offset = y * 0.12;
-                heroImg.style.transform = `translateY(${offset}px)`;
-            }
-        }, { passive: true });
-    }
-
-    // ==========================================
-    // Product card tilt (desktop only)
-    // ==========================================
-    if (window.innerWidth > 992) {
-        const cards = document.querySelectorAll('.product-card');
-
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-
-                const rotateX = ((y - centerY) / centerY) * -3;
-                const rotateY = ((x - centerX) / centerX) * 3;
-
-                card.style.transform = `translateY(-6px) perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-            });
-        });
-    }
+    // Parallax and card tilt removed for cleaner experience
 
     // ==========================================
     // Back to top
