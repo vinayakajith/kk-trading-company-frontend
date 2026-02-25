@@ -1,5 +1,5 @@
 /* ============================================
-   KK Trading Company — Honest, Earthy, Grounded
+   KK Trading Company — Premium Edition
    ============================================ */
 
 :root {
@@ -29,12 +29,30 @@
     /* Spacing */
     --section-spacing: 7.5rem;
     --container-width: 1100px;
-    --radius: 6px;
-    --radius-lg: 12px;
+    --radius: 8px;
+    --radius-lg: 14px;
 
-    --transition: all 0.3s ease;
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+    /* Premium shadows — layered for realistic depth */
+    --shadow-sm:
+        0 1px 2px rgba(59, 49, 40, 0.06),
+        0 2px 6px rgba(59, 49, 40, 0.04);
+    --shadow-md:
+        0 2px 4px rgba(59, 49, 40, 0.04),
+        0 8px 24px rgba(59, 49, 40, 0.08);
+    --shadow-lg:
+        0 4px 8px rgba(59, 49, 40, 0.04),
+        0 12px 40px rgba(59, 49, 40, 0.12);
+    --shadow-glow:
+        0 4px 16px rgba(61, 107, 90, 0.15),
+        0 8px 32px rgba(61, 107, 90, 0.08);
+
+    /* Premium transitions */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition: all 0.35s var(--ease-out);
+    --transition-fast: all 0.2s var(--ease-out);
+    --transition-slow: all 0.5s var(--ease-out);
 }
 
 /* ============================================
@@ -60,6 +78,24 @@ body {
     line-height: 1.65;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth page load fade-in */
+body {
+    animation: fadeInPage 0.6s ease-out;
+}
+
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 body.no-scroll {
@@ -86,7 +122,7 @@ p {
 a {
     text-decoration: none;
     color: inherit;
-    transition: var(--transition);
+    transition: var(--transition-fast);
 }
 
 img {
@@ -125,6 +161,7 @@ img {
 
 .section {
     padding: var(--section-spacing) 0;
+    position: relative;
 }
 
 .section-label {
@@ -132,7 +169,7 @@ img {
     font-size: 0.78rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     color: var(--clr-green-main);
     margin-bottom: 0.6rem;
 }
@@ -166,8 +203,16 @@ img {
     flex-direction: column;
 }
 
+/* Section Divider */
+.section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--clr-cream-dark) 30%, var(--clr-brown-muted) 50%, var(--clr-cream-dark) 70%, transparent 100%);
+    opacity: 0.5;
+}
+
 /* ============================================
-   Buttons
+   Buttons — Premium
    ============================================ */
 .btn-primary,
 .btn-outline {
@@ -181,17 +226,43 @@ img {
     cursor: pointer;
     border: 2px solid transparent;
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-primary {
     background-color: var(--clr-green-main);
     color: var(--clr-white);
     border-color: var(--clr-green-main);
+    box-shadow: 0 2px 8px rgba(61, 107, 90, 0.25);
 }
 
 .btn-primary:hover {
     background-color: var(--clr-green-deep);
     border-color: var(--clr-green-deep);
+    box-shadow: 0 4px 16px rgba(61, 107, 90, 0.35);
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(61, 107, 90, 0.2);
+}
+
+/* Shimmer sweep on primary buttons */
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: left 0.5s var(--ease-out);
+}
+
+.btn-primary:hover::after {
+    left: 100%;
 }
 
 .btn-outline {
@@ -204,10 +275,16 @@ img {
     border-color: var(--clr-brown-deep);
     background-color: var(--clr-brown-deep);
     color: var(--clr-white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline:active {
+    transform: translateY(0);
 }
 
 /* ============================================
-   Navigation
+   Navigation — Glassmorphism
    ============================================ */
 .navbar {
     position: fixed;
@@ -216,14 +293,18 @@ img {
     width: 100%;
     z-index: 1000;
     padding: 1.2rem 0;
-    transition: var(--transition);
+    transition: all 0.4s var(--ease-out);
     background: transparent;
 }
 
 .navbar.scrolled {
-    background-color: var(--clr-cream);
+    background-color: rgba(247, 243, 237, 0.85);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
     padding: 0.8rem 0;
-    box-shadow: var(--shadow-sm);
+    box-shadow:
+        0 1px 0 rgba(59, 49, 40, 0.06),
+        0 4px 16px rgba(59, 49, 40, 0.08);
 }
 
 .navbar.hidden {
@@ -276,6 +357,30 @@ img {
     color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
     font-size: 0.9rem;
+    position: relative;
+    padding-bottom: 2px;
+}
+
+/* Animated underline on hover */
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s var(--ease-out);
+    border-radius: 1px;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active-link::after {
+    width: 100%;
+}
+
+.nav-links li a.btn-nav-contact::after {
+    display: none;
 }
 
 .nav-links li a:hover {
@@ -290,17 +395,23 @@ img {
     color: var(--clr-green-main);
 }
 
+.navbar.scrolled .nav-links li a.active-link {
+    color: var(--clr-green-main);
+}
+
 .btn-nav-contact {
     padding: 0.5rem 1.2rem !important;
     border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
     border-radius: var(--radius) !important;
     font-size: 0.85rem !important;
+    transition: var(--transition) !important;
 }
 
 .btn-nav-contact:hover {
     background-color: var(--clr-white) !important;
     color: var(--clr-dark) !important;
     border-color: var(--clr-white) !important;
+    box-shadow: 0 2px 12px rgba(255, 255, 255, 0.2) !important;
 }
 
 .navbar.scrolled .btn-nav-contact {
@@ -311,6 +422,7 @@ img {
 .navbar.scrolled .btn-nav-contact:hover {
     background-color: var(--clr-green-main) !important;
     color: var(--clr-white) !important;
+    box-shadow: var(--shadow-glow) !important;
 }
 
 /* Hamburger */
@@ -335,13 +447,27 @@ img {
 }
 
 /* ============================================
-   Hero
+   Hero — Premium Depth
    ============================================ */
 .hero {
-    background-color: var(--clr-brown-deep);
+    background: linear-gradient(135deg, var(--clr-brown-deep) 0%, #2E261E 50%, #241F19 100%);
     color: var(--clr-white);
     padding: 7rem 0 4rem;
     min-height: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle grain texture overlay */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at 70% 60%, rgba(61, 107, 90, 0.08) 0%, transparent 60%);
+    pointer-events: none;
 }
 
 .hero-grid {
@@ -349,6 +475,8 @@ img {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content {
@@ -393,6 +521,7 @@ img {
 .hero .btn-primary:hover {
     background-color: var(--clr-green-deep);
     border-color: var(--clr-green-deep);
+    box-shadow: 0 6px 24px rgba(61, 107, 90, 0.4);
 }
 
 .hero .btn-outline {
@@ -404,6 +533,7 @@ img {
     border-color: var(--clr-white);
     background-color: var(--clr-white);
     color: var(--clr-dark);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
 }
 
 .hero-images {
@@ -411,12 +541,14 @@ img {
     justify-content: center;
     align-items: center;
     width: 100%;
+    perspective: 800px;
 }
 
 .hero-img {
     border-radius: var(--radius-lg);
     overflow: hidden;
     width: 100%;
+    will-change: transform;
 }
 
 .hero-img img {
@@ -424,11 +556,15 @@ img {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.6s var(--ease-out);
 }
 
 .hero-img-main {
     height: 400px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 0 80px rgba(61, 107, 90, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* ============================================
@@ -473,6 +609,7 @@ img {
     color: var(--clr-green-main);
     line-height: 1;
     margin-bottom: 0.2rem;
+    text-shadow: 0 2px 8px rgba(61, 107, 90, 0.12);
 }
 
 .heritage-label {
@@ -487,7 +624,14 @@ img {
     overflow: hidden;
     height: 100%;
     min-height: 500px;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
+    transition: box-shadow 0.4s var(--ease-out);
+}
+
+.heritage-visual:hover {
+    box-shadow:
+        0 8px 24px rgba(59, 49, 40, 0.12),
+        0 20px 60px rgba(59, 49, 40, 0.16);
 }
 
 .heritage-main-img {
@@ -497,10 +641,15 @@ img {
     position: absolute;
     top: 0;
     left: 0;
+    transition: transform 0.6s var(--ease-out);
+}
+
+.heritage-visual:hover .heritage-main-img {
+    transform: scale(1.03);
 }
 
 /* ============================================
-   Products Section
+   Products Section — Elevated Cards
    ============================================ */
 .products-section {
     background-color: var(--clr-cream);
@@ -527,7 +676,7 @@ img {
 .category-line {
     height: 1px;
     width: 100%;
-    background-color: var(--clr-cream-dark);
+    background: linear-gradient(90deg, var(--clr-cream-dark), transparent);
 }
 
 .product-grid {
@@ -535,20 +684,43 @@ img {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     margin-bottom: 1.5rem;
-    /* Reduced from 3rem */
 }
 
 .product-card {
     background-color: var(--clr-white);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    border: 1px solid var(--clr-cream-dark);
-    transition: var(--transition);
+    border: 1px solid rgba(237, 232, 224, 0.8);
+    transition:
+        transform 0.4s var(--ease-spring),
+        box-shadow 0.4s var(--ease-out),
+        border-color 0.3s var(--ease-out);
+    will-change: transform;
+    position: relative;
+}
+
+/* Accent line at bottom on hover */
+.product-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--clr-green-main), var(--clr-green-soft));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out);
+}
+
+.product-card:hover::after {
+    transform: scaleX(1);
 }
 
 .product-card:hover {
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
     border-color: transparent;
+    transform: translateY(-6px);
 }
 
 /* Product images */
@@ -561,14 +733,14 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: transform 0.5s var(--ease-out);
 }
 
 .product-card:hover .product-image img {
-    transform: scale(1.04);
+    transform: scale(1.06);
 }
 
-/* Crop variants — same image, different framing */
+/* Crop variants */
 .img-crop-center img {
     object-position: center center;
 }
@@ -591,6 +763,11 @@ img {
     font-size: 1.3rem;
     margin-bottom: 0.4rem;
     color: var(--clr-dark);
+    transition: color 0.3s var(--ease-out);
+}
+
+.product-card:hover .product-info h4 {
+    color: var(--clr-green-deep);
 }
 
 .product-info p {
@@ -601,11 +778,24 @@ img {
 }
 
 /* ============================================
-   How We Work
+   How We Work — Frosted Glass Cards
    ============================================ */
 .process-section {
-    background-color: var(--clr-dark);
+    background: linear-gradient(180deg, var(--clr-dark) 0%, #1E1B17 100%);
     color: var(--clr-white);
+    position: relative;
+}
+
+/* Subtle pattern overlay */
+.process-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at 30% 80%, rgba(61, 107, 90, 0.06) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .process-section .section-title {
@@ -624,61 +814,76 @@ img {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .process-step {
-    padding: 1.5rem 1.2rem;
-    background-color: rgba(255, 255, 255, 0.05);
-    /* richer contrast from bg */
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: var(--radius-md);
-    /* sharper corners */
+    padding: 1.8rem 1.4rem;
+    background: rgba(255, 255, 255, 0.04);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
     text-align: left;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    transition: transform 0.3s ease;
+    transition:
+        transform 0.4s var(--ease-spring),
+        background 0.3s var(--ease-out),
+        border-color 0.3s var(--ease-out),
+        box-shadow 0.4s var(--ease-out);
 }
 
 .process-step:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .step-number {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    /* reduced slightly from original 48px */
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    background-color: var(--clr-green-main);
+    background: linear-gradient(135deg, var(--clr-green-main), var(--clr-green-soft));
     color: var(--clr-white);
     font-family: var(--font-heading);
     font-size: 1.05rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 4px 12px rgba(61, 107, 90, 0.3);
+    transition: box-shadow 0.3s var(--ease-out);
+}
+
+.process-step:hover .step-number {
+    box-shadow:
+        0 4px 12px rgba(61, 107, 90, 0.3),
+        0 0 20px rgba(61, 107, 90, 0.2);
 }
 
 .process-step h4 {
     font-family: var(--font-body);
     font-size: 1.1rem;
-    /* reduced from 1.2rem for less Cramp */
     line-height: 1.35;
     font-weight: 600;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
     color: var(--clr-white);
 }
 
 .process-step p {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.65);
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.55;
 }
 
 /* ============================================
-   Buyers Section
+   Buyers Section — Interactive
    ============================================ */
 .buyers-section {
     background-color: var(--clr-white);
@@ -695,15 +900,18 @@ img {
     background-color: var(--clr-cream);
     border-radius: var(--radius-lg);
     text-align: center;
-    transition: var(--transition);
+    transition:
+        transform 0.4s var(--ease-spring),
+        box-shadow 0.3s var(--ease-out),
+        border-color 0.3s var(--ease-out);
     border: 1px solid transparent;
 }
 
 .buyer-card:hover {
-    border-color: var(--clr-green-main);
+    border-color: rgba(61, 107, 90, 0.2);
     background-color: var(--clr-white);
-    box-shadow: var(--shadow-sm);
-    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-6px);
 }
 
 .buyer-icon {
@@ -716,16 +924,31 @@ img {
     background-color: rgba(61, 107, 90, 0.1);
     color: var(--clr-green-main);
     margin-bottom: 1rem;
+    transition:
+        background-color 0.3s var(--ease-out),
+        box-shadow 0.3s var(--ease-out),
+        transform 0.3s var(--ease-out);
+}
+
+.buyer-card:hover .buyer-icon {
+    background-color: rgba(61, 107, 90, 0.15);
+    box-shadow: 0 0 0 6px rgba(61, 107, 90, 0.06);
+    transform: scale(1.08);
 }
 
 .buyer-card h4 {
     font-size: 1.1rem;
     color: var(--clr-dark);
     margin: 0;
+    transition: color 0.3s var(--ease-out);
+}
+
+.buyer-card:hover h4 {
+    color: var(--clr-green-deep);
 }
 
 /* ============================================
-   Contact Section
+   Contact Section — Refined Forms
    ============================================ */
 .contact-section {
     background-color: var(--clr-cream-dark);
@@ -748,6 +971,13 @@ img {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
+    padding: 0.6rem;
+    border-radius: var(--radius);
+    transition: background-color 0.3s var(--ease-out);
+}
+
+.contact-item:hover {
+    background-color: rgba(61, 107, 90, 0.04);
 }
 
 .contact-icon {
@@ -760,8 +990,13 @@ img {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transition: var(--transition-fast);
 }
 
+.contact-item:hover .contact-icon {
+    background-color: rgba(61, 107, 90, 0.15);
+    transform: scale(1.05);
+}
 
 .contact-label {
     font-size: 0.78rem;
@@ -776,10 +1011,13 @@ img {
     font-size: 0.98rem;
     color: var(--clr-green-main);
     font-weight: 500;
+    transition: color 0.2s var(--ease-out);
 }
 
 .contact-value:hover {
+    color: var(--clr-green-deep);
     text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .contact-value-text {
@@ -804,13 +1042,18 @@ img {
     color: var(--clr-text);
 }
 
-/* Contact Form */
+/* Contact Form — Premium */
 .contact-form-wrap {
     background: var(--clr-white);
     padding: 2.5rem;
     border-radius: var(--radius-lg);
-    border: 1px solid var(--clr-cream-dark);
-    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(237, 232, 224, 0.6);
+    box-shadow: var(--shadow-md);
+    transition: box-shadow 0.3s var(--ease-out);
+}
+
+.contact-form-wrap:hover {
+    box-shadow: var(--shadow-lg);
 }
 
 .contact-form-wrap h3 {
@@ -835,13 +1078,21 @@ img {
 .form-group textarea {
     width: 100%;
     padding: 0.85rem 1rem;
-    border: 1px solid var(--clr-cream-dark);
+    border: 1.5px solid var(--clr-cream-dark);
     border-radius: var(--radius);
     font-family: inherit;
     font-size: 0.95rem;
     background-color: var(--clr-cream);
-    transition: var(--transition);
+    transition:
+        border-color 0.3s var(--ease-out),
+        background-color 0.3s var(--ease-out),
+        box-shadow 0.3s var(--ease-out);
     color: var(--clr-text);
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+    border-color: var(--clr-brown-muted);
 }
 
 .form-group input:focus,
@@ -849,7 +1100,9 @@ img {
     outline: none;
     border-color: var(--clr-green-main);
     background-color: var(--clr-white);
-    box-shadow: 0 0 0 3px rgba(61, 107, 90, 0.08);
+    box-shadow:
+        0 0 0 4px rgba(61, 107, 90, 0.08),
+        inset 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .form-group textarea {
@@ -865,10 +1118,10 @@ img {
 }
 
 /* ============================================
-   Footer
+   Footer — Refined
    ============================================ */
 .footer {
-    background-color: var(--clr-dark);
+    background: linear-gradient(180deg, var(--clr-dark) 0%, #141210 100%);
     color: rgba(255, 255, 255, 0.6);
     padding: 2.5rem 0 2rem;
 }
@@ -905,17 +1158,34 @@ img {
 }
 
 .footer-links a {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.45);
     font-size: 0.85rem;
+    position: relative;
+    transition: color 0.3s var(--ease-out);
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--clr-green-soft);
+    transition: width 0.3s var(--ease-out);
 }
 
 .footer-links a:hover {
     color: rgba(255, 255, 255, 0.9);
 }
 
+.footer-links a:hover::after {
+    width: 100%;
+}
+
 .footer-divider {
     height: 1px;
-    background-color: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     margin: 1.5rem 0;
 }
 
@@ -927,7 +1197,7 @@ img {
 
 .footer-bottom p {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.3);
     margin: 0;
 }
 
@@ -936,17 +1206,17 @@ img {
 }
 
 /* ============================================
-   Back to Top
+   Back to Top — Premium
    ============================================ */
 .back-to-top {
     position: fixed;
     bottom: 1.5rem;
     right: 1.5rem;
     z-index: 900;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    background-color: var(--clr-brown-deep);
+    background: linear-gradient(135deg, var(--clr-brown-deep), var(--clr-brown-main));
     color: var(--clr-white);
     border: none;
     cursor: pointer;
@@ -956,26 +1226,29 @@ img {
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
-    transition: var(--transition);
+    transition: all 0.4s var(--ease-spring);
+    box-shadow: var(--shadow-md);
 }
 
 .back-to-top.visible {
-    opacity: 0.7;
+    opacity: 0.8;
     visibility: visible;
     transform: translateY(0);
 }
 
 .back-to-top:hover {
     opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
 }
 
 /* ============================================
-   Animations
+   Animations — Refined Reveal
    ============================================ */
 .reveal-up {
     opacity: 0;
-    transform: translateY(25px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(30px);
+    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
 }
 
 .reveal-up.active {
@@ -985,6 +1258,31 @@ img {
 
 .reveal-up[style*="--delay"] {
     transition-delay: var(--delay);
+}
+
+/* Staggered children animation */
+.stagger-children .reveal-up:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.stagger-children .reveal-up:nth-child(2) {
+    transition-delay: 0.08s;
+}
+
+.stagger-children .reveal-up:nth-child(3) {
+    transition-delay: 0.16s;
+}
+
+.stagger-children .reveal-up:nth-child(4) {
+    transition-delay: 0.24s;
+}
+
+.stagger-children .reveal-up:nth-child(5) {
+    transition-delay: 0.32s;
+}
+
+.stagger-children .reveal-up:nth-child(6) {
+    transition-delay: 0.40s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1003,6 +1301,10 @@ img {
     .reveal-up {
         opacity: 1;
         transform: none;
+    }
+
+    body {
+        animation: none;
     }
 }
 
@@ -1120,6 +1422,10 @@ img {
         display: block;
     }
 
+    .nav-links li a::after {
+        display: none;
+    }
+
     .nav-links li a.btn-nav-contact {
         display: flex;
         align-items: center;
@@ -1160,8 +1466,6 @@ img {
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        /* Firefox hide scrollbar */
-        /* To allow scrolling edge-to-edge but respect container padding */
         margin-left: -1.2rem;
         margin-right: -1.2rem;
         padding-left: 1.2rem;
@@ -1170,7 +1474,6 @@ img {
 
     .product-grid::-webkit-scrollbar {
         display: none;
-        /* Chrome/Safari/Webkit hide scrollbar */
     }
 
     .product-card {
@@ -1187,7 +1490,6 @@ img {
     .process-step {
         gap: 0.8rem;
         padding: 1.2rem 1rem;
-        /* tightly wrapped on mobile */
     }
 
     .step-number {
@@ -1245,7 +1547,6 @@ img {
     /* Cards */
     .product-image {
         height: 160px;
-        /* smaller images on mobile to reduce scroll fatigue */
     }
 
     .product-info p {
@@ -1253,11 +1554,8 @@ img {
         line-height: 1.4;
     }
 
-    /* Removed manual visual break since spices have alternating background */
-
     .process-step h4 {
         font-size: 1.15rem;
-        /* softer bold */
         line-height: 1.4;
         margin-bottom: 0.3rem;
     }
@@ -1298,7 +1596,7 @@ img {
         transform-origin: left;
     }
 
-    /* Buyers Grid - 2 cols on mobile instead of 1 */
+    /* Buyers Grid */
     .buyers-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;

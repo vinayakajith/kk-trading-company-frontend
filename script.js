@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     // ==========================================
-    // Navbar — scroll effect + auto-hide
+    // Navbar — scroll effect + auto-hide + glass
     // ==========================================
     const navbar = document.getElementById('navbar');
     let lastScrollY = window.scrollY;
@@ -46,6 +46,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     updateNavbar();
+
+    // ==========================================
+    // Active nav link highlighting
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinksAll = document.querySelectorAll('.nav-links a[href^="#"]');
+
+    const highlightNav = () => {
+        const scrollY = window.scrollY + navbar.offsetHeight + 60;
+
+        sections.forEach(section => {
+            const top = section.offsetTop;
+            const height = section.offsetHeight;
+            const id = section.getAttribute('id');
+
+            if (scrollY >= top && scrollY < top + height) {
+                navLinksAll.forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active-link');
+                    }
+                });
+            }
+        });
+    };
+
+    window.addEventListener('scroll', () => {
+        requestAnimationFrame(highlightNav);
+    }, { passive: true });
+
+    highlightNav();
 
     // ==========================================
     // Mobile menu
@@ -118,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // Scroll reveal
+    // Scroll reveal — staggered
     // ==========================================
     const revealElements = document.querySelectorAll('.reveal-up');
 
@@ -130,11 +161,96 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -30px 0px'
+        threshold: 0.08,
+        rootMargin: '0px 0px -40px 0px'
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // ==========================================
+    // Heritage counter animation
+    // ==========================================
+    const counters = document.querySelectorAll('.heritage-number[data-count]');
+    let countersAnimated = false;
+
+    const animateCounter = (el) => {
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        const suffix = el.getAttribute('data-suffix') || '';
+        const duration = 1800; // ms
+        const startTime = performance.now();
+
+        // Easing function — ease-out cubic
+        const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+        const step = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = easeOutCubic(progress);
+            const current = Math.round(easedProgress * target);
+
+            el.textContent = current + suffix;
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        };
+
+        requestAnimationFrame(step);
+    };
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !countersAnimated) {
+                countersAnimated = true;
+                counters.forEach(counter => animateCounter(counter));
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+
+    // ==========================================
+    // Hero image parallax (subtle)
+    // ==========================================
+    const heroImg = document.querySelector('.hero-img-main');
+
+    if (heroImg && window.innerWidth > 768) {
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            if (y < window.innerHeight) {
+                const offset = y * 0.12;
+                heroImg.style.transform = `translateY(${offset}px)`;
+            }
+        }, { passive: true });
+    }
+
+    // ==========================================
+    // Product card tilt (desktop only)
+    // ==========================================
+    if (window.innerWidth > 992) {
+        const cards = document.querySelectorAll('.product-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = ((y - centerY) / centerY) * -3;
+                const rotateY = ((x - centerX) / centerX) * 3;
+
+                card.style.transform = `translateY(-6px) perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+    }
 
     // ==========================================
     // Back to top
