@@ -1136,11 +1136,13 @@ img {
 
 .footer .logo-kk {
     color: var(--clr-green-soft);
+    text-shadow: none;
 }
 
 .footer .logo-text {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.8rem;
+    text-shadow: none;
 }
 
 .footer-links {
