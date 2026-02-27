@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="container footer-inner">
                 <div className="footer-top">
                     <div className="footer-brand">
-                        <span className="logo-kk">KK</span>
+                        <span className="logo-kk">K K</span>
                         <span className="logo-text">Trading Company</span>
                     </div>
                     <div className="footer-links">
@@ -21,7 +21,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-divider"></div>
                 <div className="footer-bottom">
-                    <p>&copy; <span id="year">{year}</span> KK Trading Company. All rights reserved.</p>
+                    <p>&copy; <span id="year">{year}</span> K K Trading Company. All rights reserved.</p>
                     <p className="footer-location">Kerala, India</p>
                 </div>
             </div>

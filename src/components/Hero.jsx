@@ -6,11 +6,10 @@ const Hero = () => {
         <section id="home" className="hero">
             <div className="container hero-inner">
                 <div className="hero-content">
-                    <p className="hero-tag">Est. 1963 · Palakkad, Kerala</p>
-                    <h1 className="hero-title">Kerala Rice &amp; Spices,<br />Direct from the Land<br />We Farm</h1>
+                    <p className="hero-tag">Harvesting Excellence Since Generations</p>
+                    <h1 className="hero-title">K K Trading Company</h1>
                     <p className="hero-desc">
-                        Family-managed. Farming since 1963.<br />
-                        Direct supply to retailers and distributors.
+                        Wholesalers and exporters in premium quality rice and spices.
                     </p>
                     <div className="hero-actions">
                         <a href="#products" className="btn-hero-primary">View Products</a>

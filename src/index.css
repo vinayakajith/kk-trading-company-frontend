@@ -1,5 +1,5 @@
 /* ============================================
-   KK Trading Company — Premium Edition
+   K K Trading Company — Premium Edition
    ============================================ */
 
 :root {
@@ -604,8 +604,8 @@ img {
 }
 
 .heritage-stats-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    align-items: center;
     gap: 1.5rem;
     margin-top: 2.5rem;
     padding-top: 2.5rem;
@@ -614,23 +614,23 @@ img {
 
 .heritage-stat {
     display: flex;
-    flex-direction: column;
+    align-items: baseline;
+    gap: 0.8rem;
 }
 
 .heritage-number {
     font-family: var(--font-heading);
-    font-size: clamp(3.5rem, 8vw, 4.5rem);
+    font-size: clamp(3.5rem, 8vw, 5rem);
     font-weight: 800;
-    color: var(--clr-green-main);
+    color: var(--clr-brown-deep);
     line-height: 1;
-    margin-bottom: 0.2rem;
-    text-shadow: 0 2px 8px rgba(61, 107, 90, 0.12);
 }
 
 .heritage-label {
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 1.15rem;
+    font-weight: 600;
     color: var(--clr-text);
+    letter-spacing: 0.3px;
 }
 
 .heritage-visual {

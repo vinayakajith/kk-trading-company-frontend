@@ -15,7 +15,7 @@ const Process = () => {
                         <div className="step-number">1</div>
                         <div className="step-content">
                             <h4>Source from Local Farms</h4>
-                            <p>Direct sourcing from trusted networks. Rice from Palakkad, spices from the Western Ghats.
+                            <p>Direct sourcing from trusted networks across Kerala. Premium rice and spices from the finest sources.
                                 Every batch traceable.</p>
                         </div>
                     </div>

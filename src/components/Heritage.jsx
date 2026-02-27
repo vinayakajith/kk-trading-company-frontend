@@ -2,46 +2,29 @@ import React, { useEffect, useState, useRef } from 'react';
 import farmerHandsImg from '../assets/images/farmer_hands_rice.png';
 
 const Heritage = () => {
-    const [years, setYears] = useState(0);
-    const [yearEst, setYearEst] = useState(0);
+    const [generations, setGenerations] = useState(0);
     const sectionRef = useRef(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
-                // Animate counts
-                let start = 0;
                 const duration = 2000;
 
-                // Animate Years
-                const animateYears = (timestamp) => {
-                    if (!start) start = timestamp;
-                    const progress = timestamp - start;
+                // Animate Generations
+                let startGen = 0;
+                const animateGen = (timestamp) => {
+                    if (!startGen) startGen = timestamp;
+                    const progress = timestamp - startGen;
                     const percentage = Math.min(progress / duration, 1);
-                    setYears(Math.floor(150 * (1 - Math.pow(1 - percentage, 3))));
+                    setGenerations(Math.floor(4 * (1 - Math.pow(1 - percentage, 3))));
                     if (progress < duration) {
-                        requestAnimationFrame(animateYears);
+                        requestAnimationFrame(animateGen);
                     } else {
-                        setYears(150);
+                        setGenerations(4);
                     }
                 };
 
-                // Animate Established
-                let startEst = 0;
-                const animateEst = (timestamp) => {
-                    if (!startEst) startEst = timestamp;
-                    const progress = timestamp - startEst;
-                    const percentage = Math.min(progress / duration, 1);
-                    setYearEst(Math.floor(1963 * (1 - Math.pow(1 - percentage, 3))));
-                    if (progress < duration) {
-                        requestAnimationFrame(animateEst);
-                    } else {
-                        setYearEst(1963);
-                    }
-                };
-
-                requestAnimationFrame(animateYears);
-                requestAnimationFrame(animateEst);
+                requestAnimationFrame(animateGen);
 
                 // Once triggered, unobserve to run once
                 if (sectionRef.current) {
@@ -66,17 +49,13 @@ const Heritage = () => {
                     <p className="section-label">From Farm to Trade</p>
                     <h2 className="section-title">Rooted in Kerala's Agricultural Legacy</h2>
                     <p>For generations, our family cultivated rice paddies and spice gardens across Kerala.</p>
-                    <p>In the 1960s, we began trading the very produce we grew &mdash; bringing it directly to retailers and distributors.</p>
+                    <p>Over the years, we began trading the very produce we grew &mdash; bringing it to retailers and distributors across Kerala.</p>
                     <p>Today, we remain a family-managed business rooted in the same land, working with the same principles.</p>
 
                     <div className="heritage-stats-row">
                         <div className="heritage-stat">
-                            <span className="heritage-number">{years}+</span>
-                            <span className="heritage-label">Years of Farming</span>
-                        </div>
-                        <div className="heritage-stat">
-                            <span className="heritage-number">{yearEst}</span>
-                            <span className="heritage-label">Trade Established</span>
+                            <span className="heritage-number">{generations}</span>
+                            <span className="heritage-label">Generations of Excellence</span>
                         </div>
                     </div>
                 </div>
