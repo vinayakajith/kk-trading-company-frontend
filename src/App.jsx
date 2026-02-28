@@ -8,7 +8,7 @@ import Buyers from './components/Buyers';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import Loader from './components/Loader';
-import heroImg from './assets/images/hero_portrait.jpg';
+import heroImg from './assets/images/heroimagefinal.jpg';
 
 function App() {
   const [loading, setLoading] = useState(true);

@@ -48,9 +48,11 @@ const Heritage = () => {
                 <div className="heritage-text reveal-up">
                     <p className="section-label">From Farm to Trade</p>
                     <h2 className="section-title">Rooted in Kerala's Agricultural Legacy</h2>
-                    <p>For generations, our family cultivated rice paddies and spice gardens across Kerala.</p>
-                    <p>Over the years, we began trading the very produce we grew &mdash; bringing it to retailers and distributors across Kerala.</p>
-                    <p>Today, we remain a family-managed business rooted in the same land, working with the same principles.</p>
+                    <p>For generations, our family has cultivated rice paddies and spice gardens across Kerala's fertile land.</p>
+                    <blockquote className="heritage-quote">
+                        "What began as farming, grew into trade — carrying the same values from our fields to your shelves."
+                    </blockquote>
+                    <p>Today, we remain a family-managed business rooted in the same land, working with the same principles of quality, trust, and integrity.</p>
 
                     <div className="heritage-stats-row">
                         <div className="heritage-stat">

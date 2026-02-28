@@ -14,9 +14,8 @@ const Process = () => {
                     <div className="process-step reveal-up" style={{ '--delay': '0s' }}>
                         <div className="step-number">1</div>
                         <div className="step-content">
-                            <h4>Source from Local Farms</h4>
-                            <p>Direct sourcing from trusted networks across Kerala. Premium rice and spices from the finest sources.
-                                Every batch traceable.</p>
+                            <h4>Sourced by Farmers, for You</h4>
+                            <p>With over 150 years in agriculture, we know the land and the people who work it. We source directly from farmers we've trusted for generations — premium rice and spices, every batch traceable.</p>
                         </div>
                     </div>
 
@@ -24,7 +23,7 @@ const Process = () => {
                         <div className="step-number">2</div>
                         <div className="step-content">
                             <h4>Inspect Before Dispatch</h4>
-                            <p>Checked for moisture, consistency, and aroma. If it fails inspection, it doesn't ship.</p>
+                            <p>Checked for moisture, consistency, and aroma — because we've spent generations learning what quality looks like.</p>
                         </div>
                     </div>
 
@@ -40,7 +39,7 @@ const Process = () => {
                         <div className="step-number">4</div>
                         <div className="step-content">
                             <h4>Ship and Follow Up</h4>
-                            <p>We coordinate logistics and provide proactive updates. Issues communicated immediately.</p>
+                            <p>We coordinate logistics and provide proactive updates. Concerns communicated immediately.</p>
                         </div>
                     </div>
                 </div>

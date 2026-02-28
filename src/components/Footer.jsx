@@ -8,8 +8,19 @@ const Footer = () => {
             <div className="container footer-inner">
                 <div className="footer-top">
                     <div className="footer-brand">
-                        <span className="logo-kk">K K</span>
-                        <span className="logo-text">Trading Company</span>
+                        <div>
+                            <div className="footer-brand-name">
+                                <span className="logo-kk">K K</span>
+                                <span className="logo-text">Trading Company</span>
+                            </div>
+                            <p className="footer-tagline">Harvesting Excellence Since Generations</p>
+                            <address className="footer-address">
+                                K K Trading Company<br />
+                                27/188J, Pazhaveed<br />
+                                Alappuzha — 688009<br />
+                                Keralam, India
+                            </address>
+                        </div>
                     </div>
                     <div className="footer-links">
                         <a href="#home">Home</a>

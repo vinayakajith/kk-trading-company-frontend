@@ -265,21 +265,21 @@ img {
     /* Slimmer base padding */
     transition: all 0.4s var(--ease-out);
 
-    /* High-performance Jute Texture Blend - Raised overlay for solid background that blends in */
-    background: linear-gradient(rgba(247, 243, 237, 0.95), rgba(247, 243, 237, 0.95)), url('./assets/images/jute_texture.jpg');
-    background-size: cover;
+    /* High-performance Jute Texture Blend - Fixed size prevents shift on scroll */
+    background: linear-gradient(rgba(247, 243, 237, 0.92), rgba(247, 243, 237, 0.92)), url('./assets/images/jute_texture.jpg');
+    background-size: 600px auto;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    /* Subtle base shadow */
 }
 
 .navbar.scrolled {
     padding: 0.5rem 0;
     /* Even slimmer when scrolled */
-    background: linear-gradient(rgba(247, 243, 237, 0.98), rgba(247, 243, 237, 0.98)), url('./assets/images/jute_texture.jpg');
-    background-size: cover;
+    background: linear-gradient(rgba(247, 243, 237, 0.95), rgba(247, 243, 237, 0.95)), url('./assets/images/jute_texture.jpg');
+    background-size: 600px auto;
     background-position: center;
+    background-repeat: repeat;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
@@ -432,7 +432,7 @@ img {
 }
 
 /* ============================================
-   Hero — Clean Editorial Layout
+   Hero — Premium Editorial Layout
    ============================================ */
 .hero {
     position: relative;
@@ -457,34 +457,78 @@ img {
 .hero-content {
     max-width: 580px;
     z-index: 2;
+    animation: heroFadeIn 0.8s var(--ease-out) 0.3s both;
 }
 
+@keyframes heroFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tagline with accent bar */
 .hero-tag {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    letter-spacing: 2.5px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--clr-green-main);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.hero-tag-bar {
+    display: inline-block;
+    width: 28px;
+    height: 2px;
+    background: var(--clr-green-main);
+    flex-shrink: 0;
+}
+
+/* Thin decorative rule */
+.hero-rule {
+    width: 100%;
+    max-width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--clr-brown-muted), transparent);
     margin-bottom: 1.5rem;
+    opacity: 0.4;
 }
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(2.6rem, 4.5vw, 4rem);
+    font-size: clamp(2.8rem, 4.5vw, 4.2rem);
     font-weight: 700;
-    color: var(--clr-dark) !important;
-    line-height: 1.12;
-    margin-bottom: 1.8rem;
-    letter-spacing: -1px;
+    color: var(--clr-dark);
+    line-height: 1.08;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.5px;
 }
 
 .hero-desc {
-    font-size: 1.1rem;
+    font-size: 1.08rem;
     line-height: 1.7;
-    color: var(--clr-text);
-    margin-bottom: 2.5rem;
+    color: var(--clr-text-light);
+    margin-bottom: 0.8rem;
     max-width: 440px;
+}
+
+.hero-location {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--clr-brown-muted);
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.5px;
 }
 
 .hero-actions {
@@ -499,15 +543,16 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.9rem 2rem;
-    font-size: 0.95rem;
+    padding: 0.9rem 2.2rem;
+    font-size: 0.9rem;
     font-weight: 600;
     font-family: var(--font-body);
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     border: 1.5px solid transparent;
-    transition: all 0.3s ease;
-    letter-spacing: 0.5px;
+    transition: all 0.3s var(--ease-out);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
 }
 
 .btn-hero-primary {
@@ -535,31 +580,47 @@ img {
     border-color: rgba(26, 23, 20, 0.5);
 }
 
-/* Clean Editorial Image Setup (Portrait focus) */
+/* Hero Image — Sunken, Integrated */
 .hero-image-wrapper {
     position: relative;
     width: 100%;
-    max-width: 480px;
+    max-width: 520px;
     justify-self: end;
-    aspect-ratio: 4/5;
-    border-radius: 12px;
+    aspect-ratio: 3/2;
+    border-radius: 14px;
     z-index: 1;
+    overflow: hidden;
+    animation: heroImgIn 0.9s var(--ease-out) 0.5s both;
+    box-shadow:
+        0 8px 30px rgba(26, 23, 20, 0.08),
+        0 2px 8px rgba(26, 23, 20, 0.04),
+        inset 0 0 0 1px rgba(26, 23, 20, 0.06);
 }
 
-.hero-image-wrapper::before {
-    /* Subtle, elegant drop shadow */
+/* Soft gradient fade at bottom — blends image into the page */
+.hero-image-wrapper::after {
     content: '';
     position: absolute;
-    inset: 0;
-    border-radius: 12px;
-    background: transparent;
-    box-shadow: 0 15px 35px rgba(26, 23, 20, 0.08), 0 5px 15px rgba(26, 23, 20, 0.04);
-    z-index: -1;
-    transition: all 0.5s ease;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 15%;
+    background: linear-gradient(to top, var(--clr-cream) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 0 0 14px 14px;
 }
 
-.hero-image-wrapper:hover::before {
-    box-shadow: 0 20px 45px rgba(26, 23, 20, 0.12), 0 8px 20px rgba(26, 23, 20, 0.06);
+@keyframes heroImgIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .hero-img {
@@ -568,12 +629,7 @@ img {
     object-fit: cover;
     object-position: center;
     display: block;
-    border-radius: 12px;
-    transition: transform 0.6s ease;
-}
-
-.hero-image-wrapper:hover .hero-img {
-    transform: scale(1.03);
+    border-radius: 14px;
 }
 
 
@@ -583,7 +639,7 @@ img {
    ============================================ */
 .heritage-section {
     /* High-performance Jute Background */
-    background: linear-gradient(rgba(247, 243, 237, 0.75), rgba(247, 243, 237, 0.75)), url('./assets/images/jute_texture.jpg');
+    background: linear-gradient(rgba(247, 243, 237, 0.72), rgba(247, 243, 237, 0.72)), url('./assets/images/jute_texture.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: repeat;
@@ -631,6 +687,19 @@ img {
     font-weight: 600;
     color: var(--clr-text);
     letter-spacing: 0.3px;
+}
+
+/* Heritage pull-quote */
+.heritage-quote {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--clr-text);
+    border-left: 3px solid var(--clr-green-soft);
+    padding: 0.8rem 0 0.8rem 1.2rem;
+    margin: 1.5rem 0;
+    line-height: 1.6;
+    max-width: 90%;
 }
 
 .heritage-visual {
@@ -715,8 +784,8 @@ img {
 
 .product-card:hover {
     box-shadow: var(--shadow-md);
-    border-color: transparent;
-    transform: translateY(-2px);
+    border-color: rgba(61, 107, 90, 0.12);
+    transform: translateY(-4px);
 }
 
 /* Product images */
@@ -763,7 +832,7 @@ img {
 }
 
 .product-card:hover .product-info h4 {
-    color: var(--clr-green-deep);
+    color: var(--clr-green-main);
 }
 
 .product-info p {
@@ -843,16 +912,16 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--clr-green-main), var(--clr-green-soft));
+    background: linear-gradient(135deg, var(--clr-green-main), var(--clr-green-deep));
     color: var(--clr-white);
     font-family: var(--font-heading);
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 1.2rem;
-    box-shadow: 0 4px 12px rgba(61, 107, 90, 0.3);
+    box-shadow: 0 4px 14px rgba(61, 107, 90, 0.35);
     transition: box-shadow 0.3s var(--ease-out);
 }
 
@@ -1134,6 +1203,12 @@ img {
     gap: 8px;
 }
 
+.footer-brand-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .footer .logo-kk {
     color: var(--clr-green-soft);
     text-shadow: none;
@@ -1143,6 +1218,23 @@ img {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.8rem;
     text-shadow: none;
+}
+
+.footer-tagline {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0.25rem 0 0 0;
+    letter-spacing: 0.5px;
+}
+
+.footer-address {
+    font-style: normal;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.35);
+    margin-top: 0.75rem;
 }
 
 .footer-links {
@@ -1240,8 +1332,8 @@ img {
    ============================================ */
 .reveal-up {
     opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+    transform: translateY(18px);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
 }
 
 .reveal-up.active {
@@ -1325,8 +1417,9 @@ img {
         margin-top: 1rem;
     }
 
-    .hero-actions {
-        justify-content: center;
+
+    .hero-rule {
+        margin-inline: auto;
     }
 
     .heritage-grid {
@@ -1385,10 +1478,11 @@ img {
         width: 100%;
         height: 100vh;
         height: 100dvh;
-        /* High-performance Jute Blend for Mobile Menu - increased texture visibility */
-        background: linear-gradient(rgba(247, 243, 237, 0.85), rgba(247, 243, 237, 0.85)), url('./assets/images/jute_texture.jpg');
-        background-size: cover;
+        /* High-performance Jute Blend for Mobile Menu */
+        background: linear-gradient(rgba(247, 243, 237, 0.82), rgba(247, 243, 237, 0.82)), url('./assets/images/jute_texture.jpg');
+        background-size: 400px auto;
         background-position: center;
+        background-repeat: repeat;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -1444,16 +1538,20 @@ img {
         margin-right: auto;
     }
 
-    /* Mobile navbar with increased jute texture visibility */
+    /* Mobile navbar with fixed texture size to prevent shift on scroll */
     .navbar {
-        background: linear-gradient(rgba(247, 243, 237, 0.85), rgba(247, 243, 237, 0.85)), url('./assets/images/jute_texture.jpg');
-        background-size: cover;
+        background: linear-gradient(rgba(247, 243, 237, 0.82), rgba(247, 243, 237, 0.82)), url('./assets/images/jute_texture.jpg');
+        background-size: 400px auto;
         background-position: center;
+        background-repeat: repeat;
         padding: 0.8rem 0;
     }
 
     .navbar.scrolled {
-        background: linear-gradient(rgba(247, 243, 237, 0.90), rgba(247, 243, 237, 0.90)), url('./assets/images/jute_texture.jpg');
+        background: linear-gradient(rgba(247, 243, 237, 0.87), rgba(247, 243, 237, 0.87)), url('./assets/images/jute_texture.jpg');
+        background-size: 400px auto;
+        background-position: center;
+        background-repeat: repeat;
     }
 
     .navbar .logo-text {
@@ -1506,11 +1604,11 @@ img {
     }
 
     .hero-inner {
-        padding-top: 6rem;
-        padding-bottom: 2rem;
-        gap: 2rem;
+        padding-top: 5rem;
+        padding-bottom: 1.5rem;
+        gap: 1.5rem;
+        grid-template-columns: 1fr;
         text-align: left;
-        /* Keep left-aligned on mobile for editorial feel */
     }
 
     .hero-content {
@@ -1523,13 +1621,17 @@ img {
 
     .hero-title {
         font-size: clamp(2.2rem, 9vw, 2.8rem);
-        margin-bottom: 1.2rem;
+        margin-bottom: 0.8rem;
     }
 
     .hero-desc {
         font-size: 1rem;
         line-height: 1.6;
-        margin-bottom: 2rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .hero-location {
+        margin-bottom: 1.5rem;
     }
 
     .hero-desc br {
@@ -1538,17 +1640,18 @@ img {
 
     .hero-image-wrapper {
         border-radius: 8px;
-        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.08);
-        margin-top: 1rem;
+        margin-top: 0.5rem;
         justify-self: center;
         max-width: 100%;
-        /* Let it scale up a bit more on mobile if needed, though max-width 480 is already fine */
+        aspect-ratio: 3/2;
     }
+
+
 
     .btn-hero-primary,
     .btn-hero-outline {
         padding: 0.75rem 1.5rem;
-        font-size: 0.88rem;
+        font-size: 0.82rem;
     }
 
     /* Cards */
