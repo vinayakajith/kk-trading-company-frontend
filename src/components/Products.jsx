@@ -14,7 +14,7 @@ const Products = () => {
                 <div className="container">
                     <div className="section-header reveal-up">
                         <p className="section-label">Our Products</p>
-                        <h2 className="section-title">Rice & Spices We Supply</h2>
+                        <h2 className="section-title">Premium Rice & Spices, Straight From the Source</h2>
                         <p className="section-desc">Every batch is inspected before dispatch.</p>
                     </div>
 
