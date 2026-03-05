@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import mattaImg from '../assets/images/kerala_red_rice_matta.jpeg';
 import rawImg from '../assets/images/white-rice.jpg';
 import brokenImg from '../assets/images/broken_rice.jpg';
@@ -108,7 +109,7 @@ const ProductsPage = () => {
                     <p className="pp-cta-sub">Tell us what you need and we'll get back to you.</p>
                     <div className="pp-cta-buttons">
                         <a href="https://wa.me/919846092242" target="_blank" rel="noreferrer" className="btn-primary">WhatsApp Us</a>
-                        <a href="mailto:kktradingco.kerala@gmail.com" className="btn-outline">Send an Email</a>
+                        <Link to="/#contact" className="btn-outline">Send an Email</Link>
                     </div>
                 </div>
             </section>

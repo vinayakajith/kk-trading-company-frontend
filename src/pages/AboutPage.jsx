@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import farmerHandsImg from '../assets/images/farmer_hands_rice.png';
 import heroRiceFieldImg from '../assets/images/hero_rice_field.png';
 
@@ -101,7 +102,7 @@ const AboutPage = () => {
                         <p>Send us your requirements and we'll get back to you.</p>
                         <div className="pp-cta-buttons" style={{ marginTop: '1rem' }}>
                             <a href="https://wa.me/919846092242" target="_blank" rel="noreferrer" className="btn-primary">WhatsApp Us</a>
-                            <a href="mailto:kktradingco.kerala@gmail.com" className="btn-outline">Send an Email</a>
+                            <Link to="/#contact" className="btn-outline">Send an Email</Link>
                         </div>
                     </div>
                 </div>
