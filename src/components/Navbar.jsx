@@ -22,10 +22,8 @@ const Navbar = () => {
         if (isHome) {
             document.querySelector(anchor)?.scrollIntoView({ behavior: 'smooth' });
         } else {
-            navigate('/');
-            setTimeout(() => {
-                document.querySelector(anchor)?.scrollIntoView({ behavior: 'smooth' });
-            }, 300);
+            // Navigate to home and let App.jsx handle scrolling to the hash once loaded
+            navigate(`/${anchor}`);
         }
     };
 

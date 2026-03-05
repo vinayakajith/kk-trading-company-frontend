@@ -19,6 +19,7 @@ const MAX_LOADER_MS = 6000;
 function HomePage({ onLoaded }) {
   const [loading, setLoading] = useState(true);
   const [fadeLoader, setFadeLoader] = useState(false);
+  const location = useLocation();
 
   const dismissLoader = useCallback(() => {
     setFadeLoader(true);
@@ -50,6 +51,16 @@ function HomePage({ onLoaded }) {
       img.onerror = null;
     };
   }, [dismissLoader]);
+
+  // Handle scrolling to hash from another page (e.g. Products -> /#process)
+  // We must wait until loading is false so the DOM elements actually exist.
+  useEffect(() => {
+    if (!loading && location.hash) {
+      setTimeout(() => {
+        document.querySelector(location.hash)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, [loading, location.hash]);
 
   useEffect(() => {
     if (loading) return;
