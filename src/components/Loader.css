@@ -1,18 +1,60 @@
+/* ─── Realistic CSS jute/burlap texture ─── */
 .loader-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(rgba(247, 243, 237, 0.95), rgba(247, 243, 237, 0.95)), url('../assets/images/jute_texture.jpg');
-    background-size: cover;
-    background-position: center;
     z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 1;
     transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+
+    /* Warm burlap base */
+    background-color: #ede5d5;
+
+    /* SVG checkerboard weave + fiber gradient layers */
+    background-image:
+        /* Woven grid pattern via inline SVG — alternating lighter/darker squares */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Crect width='6' height='6' fill='%23e8dece'/%3E%3Crect x='0' y='0' width='3' height='3' fill='%23e2d7c5'/%3E%3Crect x='3' y='3' width='3' height='3' fill='%23e2d7c5'/%3E%3C/svg%3E"),
+        /* Tight horizontal fiber threads */
+        repeating-linear-gradient(0deg,
+            transparent 0px,
+            transparent 1px,
+            rgba(165, 140, 105, 0.13) 1px,
+            rgba(165, 140, 105, 0.13) 2px,
+            transparent 2px,
+            transparent 4px),
+        /* Tight vertical fiber threads */
+        repeating-linear-gradient(90deg,
+            transparent 0px,
+            transparent 1px,
+            rgba(155, 130, 95, 0.11) 1px,
+            rgba(155, 130, 95, 0.11) 2px,
+            transparent 2px,
+            transparent 4px),
+        /* Wider horizontal weave bands */
+        repeating-linear-gradient(0deg,
+            transparent 0px,
+            transparent 5px,
+            rgba(145, 120, 85, 0.07) 5px,
+            rgba(145, 120, 85, 0.07) 7px,
+            transparent 7px,
+            transparent 12px),
+        /* Wider vertical weave bands */
+        repeating-linear-gradient(90deg,
+            transparent 0px,
+            transparent 5px,
+            rgba(140, 115, 80, 0.06) 5px,
+            rgba(140, 115, 80, 0.06) 7px,
+            transparent 7px,
+            transparent 12px),
+        /* Warm vignette edges */
+        radial-gradient(ellipse at center,
+            rgba(237, 229, 213, 0) 40%,
+            rgba(200, 180, 150, 0.15) 100%);
 }
 
 .loader-overlay.fade-out {

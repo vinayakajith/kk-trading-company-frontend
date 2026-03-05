@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
-    const [year, setYear] = useState(new Date().getFullYear());
+    const [year] = useState(new Date().getFullYear());
 
     return (
-        <footer className="footer">
+        <footer className="footer" id="contact">
             <div className="container footer-inner">
                 <div className="footer-top">
                     <div className="footer-brand">
@@ -23,11 +24,11 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="footer-links">
-                        <a href="#home">Home</a>
-                        <a href="#heritage">Heritage</a>
-                        <a href="#products">Products</a>
-                        <a href="#process">Process</a>
-                        <a href="#contact">Contact</a>
+                        <Link to="/">Home</Link>
+                        <Link to="/about">Heritage</Link>
+                        <Link to="/products">Products</Link>
+                        <a href="/#process">Process</a>
+                        <a href="/#contact">Contact</a>
                     </div>
                 </div>
                 <div className="footer-divider"></div>

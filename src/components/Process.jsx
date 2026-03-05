@@ -23,7 +23,7 @@ const Process = () => {
                         <div className="step-number">2</div>
                         <div className="step-content">
                             <h4>Inspect Before Dispatch</h4>
-                            <p>Checked for moisture, consistency, and aroma — because we've spent generations learning what quality looks like.</p>
+                            <p>Checked for moisture, consistency, and aroma — because we know exactly what quality looks like.</p>
                         </div>
                     </div>
 

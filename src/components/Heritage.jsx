@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import farmerHandsImg from '../assets/images/farmer_hands_rice.png';
 
 const Heritage = () => {
@@ -6,6 +7,9 @@ const Heritage = () => {
     const sectionRef = useRef(null);
 
     useEffect(() => {
+        const node = sectionRef.current;
+        if (!node) return;
+
         const observer = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
                 const duration = 2000;
@@ -25,41 +29,35 @@ const Heritage = () => {
                 };
 
                 requestAnimationFrame(animateGen);
-
-                // Once triggered, unobserve to run once
-                if (sectionRef.current) {
-                    observer.unobserve(sectionRef.current);
-                }
+                observer.unobserve(node);
             }
         }, { threshold: 0.3 });
 
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
+        observer.observe(node);
 
-        return () => {
-            if (sectionRef.current) observer.unobserve(sectionRef.current);
-        };
+        return () => observer.unobserve(node);
     }, []);
 
     return (
         <section id="heritage" className="section heritage-section" ref={sectionRef}>
             <div className="container heritage-grid">
                 <div className="heritage-text reveal-up">
-                    <p className="section-label">From Farm to Trade</p>
-                    <h2 className="section-title">Rooted in Kerala's Agricultural Legacy</h2>
-                    <p>For generations, our family has cultivated rice paddies and spice gardens across Kerala's fertile land.</p>
+                    <p className="section-label">Harvesting Excellence Since Generations</p>
+                    <h2 className="section-title">Farmers Who Became Traders</h2>
+                    <p>K K Trading Company started where all good trade starts — on the farm. Our family has been cultivating rice in Alappuzha for four generations. We know the crop, the season, and what a good grain looks like.</p>
                     <blockquote className="heritage-quote">
-                        "What began as farming, grew into trade — carrying the same values from our fields to your shelves."
+                        "We are farmers. That's why we know what to look for when we source."
                     </blockquote>
-                    <p>Today, we remain a family-managed business rooted in the same land, working with the same principles of quality, trust, and integrity.</p>
+                    <p>When we moved into trading, we sourced from farmers like ourselves. That hasn't changed.</p>
 
                     <div className="heritage-stats-row">
                         <div className="heritage-stat">
                             <span className="heritage-number">{generations}</span>
-                            <span className="heritage-label">Generations of Excellence</span>
+                            <span className="heritage-label">Generations of Farming</span>
                         </div>
                     </div>
+
+                    <Link to="/about" className="home-product-link" style={{ marginTop: '1.5rem', display: 'inline-block' }}>Our full story →</Link>
                 </div>
 
                 <div className="heritage-visual reveal-up">
