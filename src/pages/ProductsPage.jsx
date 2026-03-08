@@ -1,29 +1,30 @@
-import { Link } from 'react-router-dom';
 import mattaImg from '../assets/images/kerala_red_rice_matta.jpeg';
 import rawImg from '../assets/images/white-rice.jpg';
 import brokenImg from '../assets/images/broken_rice.jpg';
 import cardamomImg from '../assets/images/cardamom.jpg';
 import pepperImg from '../assets/images/pepper.jpg';
 import clovesImg from '../assets/images/cloves.jpg';
+import Contact from '../components/Contact';
+import { openWhatsApp } from '../utils/contact';
 
 const riceProducts = [
     {
         name: 'Palakkadan Matta Rice',
         img: mattaImg,
         desc: "Kerala's iconic red parboiled rice. Distinct earthy flavour, nutritious grain. Available parboiled and raw.",
-        packaging: '25 kg / 50 kg jute bags',
+        packaging: '25 kg / 50 kg',
     },
     {
         name: 'Raw & White Rice',
         img: rawImg,
         desc: 'Milled white rice. Clean, consistent grain. Supplied in bulk.',
-        packaging: '25 kg / 50 kg woven PP bags',
+        packaging: '25 kg / 50 kg',
     },
     {
         name: 'Broken Rice',
         img: brokenImg,
         desc: 'Grain fragments from milling. Used in food processing, idli/dosa batter, and animal feed.',
-        packaging: '25 kg / 50 kg bags · Bulk',
+        packaging: '25 kg / 50 kg · Bulk',
     },
 ];
 
@@ -32,19 +33,19 @@ const spiceProducts = [
         name: 'Green Cardamom',
         img: cardamomImg,
         desc: 'Hand-picked from the hill ranges of Idukki and Wayanad. Strong aroma, plump pods.',
-        packaging: '1 kg / 5 kg pouches · 25 kg bags',
+        packaging: '1 kg / 5 kg · 25 kg',
     },
     {
         name: 'Black Pepper',
         img: pepperImg,
         desc: 'Sun-dried Kerala black pepper. Bold and pungent.',
-        packaging: '5 kg / 10 kg bags · 25 kg jute bags',
+        packaging: '5 kg / 10 kg · 25 kg',
     },
     {
         name: 'Cloves',
         img: clovesImg,
         desc: 'Whole dried cloves from Kerala spice gardens. Dark and aromatic.',
-        packaging: '1 kg / 5 kg pouches · 25 kg bags',
+        packaging: '1 kg / 5 kg · 25 kg',
     },
 ];
 
@@ -108,11 +109,14 @@ const ProductsPage = () => {
                     <h2 className="pp-cta-title">Interested in placing an order?</h2>
                     <p className="pp-cta-sub">Tell us what you need and we'll get back to you.</p>
                     <div className="pp-cta-buttons">
-                        <a href="https://wa.me/919846092242" target="_blank" rel="noreferrer" className="btn-primary">WhatsApp Us</a>
-                        <Link to="/#contact" className="btn-outline">Send an Email</Link>
+                        <a href="#" onClick={openWhatsApp} className="btn-primary">WhatsApp Us</a>
+                        <a href="#contact" className="btn-outline">Send an Email</a>
                     </div>
                 </div>
             </section>
+
+            <div className="container"><div className="section-divider"></div></div>
+            <Contact />
         </main>
     );
 };

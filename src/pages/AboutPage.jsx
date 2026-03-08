@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
 import farmerHandsImg from '../assets/images/farmer_hands_rice.png';
 import heroRiceFieldImg from '../assets/images/hero_rice_field.png';
+import Contact from '../components/Contact';
+import { openWhatsApp } from '../utils/contact';
 
 const timeline = [
     {
@@ -51,7 +52,7 @@ const AboutPage = () => {
                         <h2 className="section-title">K K Trading Company</h2>
                         <p>We are a family business from Alappuzha, Kerala. Before we were traders, we were farmers — four generations of growing rice in the backwaters of Alappuzha is where this all started.</p>
                         <p>That background matters. When you've farmed rice yourself, you know what a good grain looks like. You know the difference between grades. You know what to ask the farmer and what to check before buying. That's the knowledge we bring to every order we fulfill.</p>
-                        <p>We source from farmers like us — small and mid-size growers who know their crop. No long supply chains. We deal directly.</p>
+                        <p>We source from farmers like us — small and mid-size growers who know their crop.</p>
                         <blockquote className="ap-quote">
                             "We are farmers. That's why we know what to look for when we source."
                         </blockquote>
@@ -101,12 +102,15 @@ const AboutPage = () => {
                         <h3 className="ap-cta-mini-title">Get in touch</h3>
                         <p>Send us your requirements and we'll get back to you.</p>
                         <div className="pp-cta-buttons" style={{ marginTop: '1rem' }}>
-                            <a href="https://wa.me/919846092242" target="_blank" rel="noreferrer" className="btn-primary">WhatsApp Us</a>
-                            <Link to="/#contact" className="btn-outline">Send an Email</Link>
+                            <a href="#" onClick={openWhatsApp} className="btn-primary">WhatsApp Us</a>
+                            <a href="#contact" className="btn-outline">Send an Email</a>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <div className="container"><div className="section-divider"></div></div>
+            <Contact />
         </main>
     );
 };

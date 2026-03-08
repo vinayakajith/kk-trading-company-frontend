@@ -7,6 +7,7 @@ import Heritage from './components/Heritage';
 import Products from './components/Products';
 import Process from './components/Process';
 import Buyers from './components/Buyers';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import Loader from './components/Loader';
@@ -89,6 +90,7 @@ function HomePage({ onLoaded }) {
           <Products />
           <Process />
           <Buyers />
+          <Contact />
           <Footer />
           <BackToTop />
         </>
