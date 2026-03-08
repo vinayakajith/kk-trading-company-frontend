@@ -5,7 +5,6 @@ const Process = () => {
         <section id="process" className="section process-section">
             <div className="container">
                 <div className="section-header reveal-up">
-                    <p className="section-label">Our Process</p>
                     <h2 className="section-title">Our Process</h2>
                     <p className="section-desc">No complicated supply chains. Just a clear, reliable process.</p>
                 </div>
