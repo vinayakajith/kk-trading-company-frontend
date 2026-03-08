@@ -1,15 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
+    const [navHidden, setNavHidden] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const lastScrollY = useRef(0);
     const location = useLocation();
     const navigate = useNavigate();
     const isHome = location.pathname === '/';
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 100);
+        const handleScroll = () => {
+            const currentY = window.scrollY;
+            setScrolled(currentY > 100);
+
+            // Hide on scroll down, show on scroll up — only past initial threshold
+            if (currentY > 80) {
+                if (currentY > lastScrollY.current) {
+                    setNavHidden(true);
+                    setMenuOpen(false); // close drawer when nav hides
+                } else {
+                    setNavHidden(false);
+                }
+            } else {
+                setNavHidden(false);
+            }
+            lastScrollY.current = currentY;
+        };
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -28,7 +46,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
+            <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${navHidden ? 'hidden' : ''}`}>
                 <div className="container nav-container">
                     <Link to="/" className="logo" onClick={closeMenu}>
                         <span className="logo-kk">K K</span>
