@@ -9,7 +9,7 @@ const Navbar = () => {
     const isHome = location.pathname === '/';
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 50);
+        const handleScroll = () => setScrolled(window.scrollY > 100);
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -60,8 +60,14 @@ const Navbar = () => {
                         <li>
                             <a href="#process" onClick={(e) => handleAnchorNav(e, '#process')}>Our Process</a>
                         </li>
-                        <li>
+                        <li className="nav-cta-li">
                             <a href="#contact" className="btn-nav-contact" onClick={(e) => handleAnchorNav(e, '#contact')}>Contact Us</a>
+                        </li>
+                        <li className="nav-footer-li">
+                            <div className="nav-drawer-footer">
+                                <p className="nav-drawer-brand">K K Trading Co.</p>
+                                <p className="nav-drawer-tagline">Harvesting Excellence Since Generations</p>
+                            </div>
                         </li>
                     </ul>
                 </div>
