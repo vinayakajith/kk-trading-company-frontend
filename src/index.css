@@ -434,6 +434,11 @@ img {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
+/* Nav footer brand — only visible inside mobile drawer, hidden on desktop */
+.nav-footer-li {
+    display: none;
+}
+
 /* ============================================
    Hero — Full-Width Background Image
    ============================================ */
@@ -1625,6 +1630,8 @@ img {
 
     /* Footer li — pushed to bottom of drawer */
     .nav-links li.nav-footer-li {
+        display: flex;
+        flex-direction: column;
         margin-top: auto;
         border-bottom: none;
         padding: 0;
@@ -1707,6 +1714,23 @@ img {
 
     .navbar .hamburger span {
         background-color: var(--clr-dark);
+    }
+
+    /* When drawer is open — navbar matches drawer so they blend seamlessly */
+    .navbar.menu-open,
+    .navbar.menu-open.scrolled {
+        background-color: #2e2621;
+        background-image: none;
+        box-shadow: none;
+    }
+
+    .navbar.menu-open .logo-kk,
+    .navbar.menu-open .logo-text {
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .navbar.menu-open .hamburger span {
+        background-color: rgba(255, 255, 255, 0.85);
     }
 
     /* Product grid to horizontal scroll */
