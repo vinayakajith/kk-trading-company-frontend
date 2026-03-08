@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import heroImg from '../assets/images/heroimagefinal.jpg';
 
 const Hero = () => {
@@ -11,9 +12,10 @@ const Hero = () => {
                     <h1 className="hero-title">
                         Rice <span className="hero-amp">&amp;</span> Spices<br />from Kerala
                     </h1>
-                    <p className="hero-desc">Harvesting Excellence Since Generations</p>
+                    <p className="hero-desc" style={{ marginBottom: '0.5rem' }}>Harvesting Excellence Since Generations</p>
+                    <p className="hero-desc" style={{ fontSize: '1.2rem', opacity: 0.9, marginTop: 0 }}>Wholesalers and exporters in premium quality rice and spices.</p>
                     <div className="hero-actions">
-                        <a href="#products" className="btn-hero-primary">View Products</a>
+                        <Link to="/products" className="btn-hero-primary">View Products</Link>
                         <a href="#contact" className="btn-hero-outline">Contact Us</a>
                     </div>
                 </div>

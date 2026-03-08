@@ -50,11 +50,11 @@ const AboutPage = () => {
                     <div className="ap-origin-text reveal-up">
                         <p className="section-label">Who We Are</p>
                         <h2 className="section-title">K K Trading Company</h2>
-                        <p>We are a family business from Alappuzha, Kerala. Before we were traders, we were farmers — four generations of growing rice in the backwaters of Alappuzha is where this all started.</p>
+                        <p>We are a family business based in Alappuzha, Kerala. Before we were traders, we were farmers — four generations of growing rice in the backwaters is where this all started.</p>
                         <p>That background matters. When you've farmed rice yourself, you know what a good grain looks like. You know the difference between grades. You know what to ask the farmer and what to check before buying. That's the knowledge we bring to every order we fulfill.</p>
-                        <p>We source from farmers like us — small and mid-size growers who know their crop.</p>
+                        <p>We source from farmers like us — small and mid-size growers up and down the state who know their crop.</p>
                         <blockquote className="ap-quote">
-                            "We are farmers. That's why we know what to look for when we source."
+                            "We know the crop — that's why we know how to source it."
                         </blockquote>
                     </div>
                 </div>
