@@ -15,7 +15,8 @@ import ProductsPage from './pages/ProductsPage';
 import AboutPage from './pages/AboutPage';
 import heroImg from './assets/images/heroimagefinal.jpg';
 
-const MAX_LOADER_MS = 6000;
+const MAX_LOADER_MS = 2500; // hard cap — splash never exceeds this
+const MIN_LOADER_MS = 800;  // always shows long enough to feel intentional
 
 function HomePage({ onLoaded }) {
   const [loading, setLoading] = useState(true);
@@ -27,22 +28,27 @@ function HomePage({ onLoaded }) {
     setTimeout(() => {
       setLoading(false);
       onLoaded?.();
-    }, 800);
+    }, 600);
   }, [onLoaded]);
 
   useEffect(() => {
+    const startTime = Date.now();
     let dismissed = false;
+
     const safeDismiss = () => {
       if (dismissed) return;
       dismissed = true;
       clearTimeout(safetyTimer);
-      setTimeout(dismissLoader, 400);
+      // Ensure splash shows for at least MIN_LOADER_MS — no extra wait beyond that
+      const elapsed = Date.now() - startTime;
+      const delay = Math.max(0, MIN_LOADER_MS - elapsed);
+      setTimeout(dismissLoader, delay);
     };
 
     const img = new Image();
     img.src = heroImg;
     img.onload = safeDismiss;
-    img.onerror = safeDismiss;
+    img.onerror = safeDismiss; // error also dismisses — never gets stuck
 
     const safetyTimer = setTimeout(safeDismiss, MAX_LOADER_MS);
 
