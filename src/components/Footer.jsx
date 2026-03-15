@@ -5,7 +5,7 @@ const Footer = () => {
     const [year] = useState(new Date().getFullYear());
 
     return (
-        <footer className="footer" id="contact">
+        <footer className="footer">
             <div className="container footer-inner">
                 <div className="footer-top">
                     <div className="footer-brand">
