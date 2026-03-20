@@ -261,7 +261,7 @@ img {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 0.8rem 0;
+    padding: 1.1rem 0;
     /* Only transition shadow and background — never size/position */
     transition: box-shadow 0.3s var(--ease-out), background-color 0.3s var(--ease-out);
 
@@ -272,7 +272,7 @@ img {
 }
 
 .navbar.scrolled {
-    padding: 0.5rem 0;
+    padding: 0.7rem 0;
     background-color: #ede5d5;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Crect width='6' height='6' fill='%23e8dece'/%3E%3Crect x='0' y='0' width='3' height='3' fill='%23e2d7c5'/%3E%3Crect x='3' y='3' width='3' height='3' fill='%23e2d7c5'/%3E%3C/svg%3E"), repeating-linear-gradient(0deg, transparent 0px, transparent 1px, rgba(165, 140, 105, 0.12) 1px, rgba(165, 140, 105, 0.12) 2px, transparent 2px, transparent 4px), repeating-linear-gradient(90deg, transparent 0px, transparent 1px, rgba(155, 130, 95, 0.10) 1px, rgba(155, 130, 95, 0.10) 2px, transparent 2px, transparent 4px), repeating-linear-gradient(0deg, transparent 0px, transparent 5px, rgba(145, 120, 85, 0.06) 5px, rgba(145, 120, 85, 0.06) 7px, transparent 7px, transparent 12px), repeating-linear-gradient(90deg, transparent 0px, transparent 5px, rgba(140, 115, 80, 0.05) 5px, rgba(140, 115, 80, 0.05) 7px, transparent 7px, transparent 12px), radial-gradient(ellipse at 30% 40%, rgba(210, 190, 155, 0.08) 0%, transparent 70%), radial-gradient(ellipse at 70% 60%, rgba(195, 175, 140, 0.06) 0%, transparent 70%);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
@@ -302,10 +302,10 @@ img {
 
 .logo-text {
     font-family: var(--font-heading);
-    font-size: 1.35rem;
-    font-weight: 800;
+    font-size: 0.95rem;
+    font-weight: 400;
     color: var(--clr-brown-main);
-    letter-spacing: 0.5px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     transition: var(--transition);
     text-shadow: none;
@@ -1584,7 +1584,7 @@ img {
         pointer-events: all;
     }
 
-    /* Mobile Nav — dark sidebar drawer, starts below the navbar */
+    /* Mobile Nav — light sidebar drawer, starts below the navbar */
     .nav-links {
         position: fixed;
         top: 48px;
@@ -1593,7 +1593,7 @@ img {
         width: 82%;
         max-width: 310px;
         height: calc(100dvh - 48px);
-        background: linear-gradient(160deg, #2e2621 0%, #1e1b17 100%);
+        background: var(--clr-cream);
         flex-direction: column;
         justify-content: flex-start;
         align-items: stretch;
@@ -1603,7 +1603,7 @@ img {
         transform: translateX(100%);
         transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 999;
-        box-shadow: -12px 0 48px rgba(0, 0, 0, 0.35);
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
         overflow-y: auto;
     }
 
@@ -1615,7 +1615,7 @@ img {
     .nav-links li {
         width: 100%;
         text-align: left;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.07);
     }
 
     /* Contact Us li — spacing before button */
@@ -1634,7 +1634,7 @@ img {
     }
 
     .nav-links li a {
-        color: rgba(255, 255, 255, 0.78) !important;
+        color: var(--clr-brown-deep) !important;
         font-size: 1.1rem;
         font-family: var(--font-heading);
         font-weight: 600;
@@ -1646,12 +1646,12 @@ img {
     }
 
     .nav-links li a:hover {
-        background-color: rgba(255, 255, 255, 0.06);
-        color: rgba(255, 255, 255, 1) !important;
+        background-color: rgba(0, 0, 0, 0.04);
+        color: var(--clr-brown-deep) !important;
     }
 
     .nav-links li a.nav-active {
-        color: var(--clr-green-soft) !important;
+        color: var(--clr-green-main) !important;
     }
 
     .nav-links li a::after {
@@ -1669,7 +1669,7 @@ img {
         border-radius: var(--radius) !important;
         width: 100%;
         margin: 0;
-        box-shadow: 0 4px 16px rgba(45, 74, 62, 0.35);
+        box-shadow: 0 4px 16px rgba(45, 74, 62, 0.2);
     }
 
     .nav-links li a.btn-nav-contact:hover {
@@ -1679,13 +1679,13 @@ img {
     /* Drawer footer — fills dead space, adds brand identity */
     .nav-drawer-footer {
         padding: 1.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
     }
 
     .nav-drawer-brand {
         font-family: var(--font-heading);
         font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.4);
+        color: var(--clr-brown-muted);
         margin: 0 0 0.25rem;
     }
 
@@ -1693,7 +1693,7 @@ img {
         font-family: var(--font-heading);
         font-style: italic;
         font-size: 0.72rem;
-        color: rgba(255, 255, 255, 0.22);
+        color: var(--clr-text-muted);
         margin: 0;
         line-height: 1.5;
     }
