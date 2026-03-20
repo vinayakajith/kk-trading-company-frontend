@@ -33,6 +33,16 @@ const AboutPage = () => {
         return () => { document.title = 'K K Trading Company | Premium Rice & Spices Exporters from Kerala, India'; };
     }, []);
 
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { root: null, rootMargin: '0px', threshold: 0.12 });
+        document.querySelectorAll('.reveal-up, .stagger-children').forEach(el => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <main className="ap-page">
 

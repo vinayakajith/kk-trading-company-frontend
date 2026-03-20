@@ -114,19 +114,6 @@ function PageWrapper({ children }) {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('active');
-      });
-    }, { root: null, rootMargin: '0px', threshold: 0.12 });
-
-    const els = document.querySelectorAll('.reveal-up, .stagger-children');
-    els.forEach(el => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, [pathname]);
-
   return children;
 }
 
