@@ -278,8 +278,6 @@ img {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* .navbar.hidden only activates on mobile — see mobile media query */
-
 .nav-container {
     display: flex;
     justify-content: space-between;
@@ -1705,11 +1703,6 @@ img {
     .navbar.scrolled {
         padding: 0.75rem 0;
         transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), background-color 0.3s var(--ease-out);
-    }
-
-    /* Hide on scroll down, reveal on scroll up */
-    .navbar.hidden {
-        transform: translateY(-100%);
     }
 
     .navbar .logo-text {

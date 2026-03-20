@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -11,9 +11,11 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import Loader from './components/Loader';
-import ProductsPage from './pages/ProductsPage';
-import AboutPage from './pages/AboutPage';
 import heroImg from './assets/images/heroimagefinal.jpg';
+
+// Lazy-load inner pages so they don't bloat the initial bundle
+const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
 
 const MAX_LOADER_MS = 2500; // hard cap — splash never exceeds this
 const MIN_LOADER_MS = 800;  // always shows long enough to feel intentional
@@ -135,7 +137,9 @@ function App() {
       <Route path="/products" element={
         <PageWrapper>
           <Navbar />
-          <ProductsPage />
+          <Suspense fallback={null}>
+            <ProductsPage />
+          </Suspense>
           <Footer />
           <BackToTop />
         </PageWrapper>
@@ -143,7 +147,9 @@ function App() {
       <Route path="/about" element={
         <PageWrapper>
           <Navbar />
-          <AboutPage />
+          <Suspense fallback={null}>
+            <AboutPage />
+          </Suspense>
           <Footer />
           <BackToTop />
         </PageWrapper>

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import farmerHandsImg from '../assets/images/farmer_hands_rice.png';
 import heroRiceFieldImg from '../assets/images/hero_rice_field.png';
 import Contact from '../components/Contact';
@@ -27,6 +28,11 @@ const timeline = [
 ];
 
 const AboutPage = () => {
+    useEffect(() => {
+        document.title = 'Our Heritage | K K Trading Company';
+        return () => { document.title = 'K K Trading Company | Premium Rice & Spices Exporters from Kerala, India'; };
+    }, []);
+
     return (
         <main className="ap-page">
 

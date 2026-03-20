@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import mattaImg from '../assets/images/kerala_red_rice_matta.jpeg';
 import rawImg from '../assets/images/white-rice.jpg';
 import brokenImg from '../assets/images/broken_rice.jpg';
@@ -68,6 +69,11 @@ function ProductCard({ product }) {
 }
 
 const ProductsPage = () => {
+    useEffect(() => {
+        document.title = 'Products — Rice & Spices | K K Trading Company';
+        return () => { document.title = 'K K Trading Company | Premium Rice & Spices Exporters from Kerala, India'; };
+    }, []);
+
     return (
         <main className="pp-page">
             <section className="pp-hero">
