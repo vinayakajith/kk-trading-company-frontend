@@ -1,21 +1,23 @@
 import { useState, useEffect } from 'react';
-import { openWhatsApp, openEmail, getEmailText, getPhoneText } from '../utils/contact';
+import { openWhatsApp, getEmailText, getPhoneText } from '../utils/contact';
+
+const _e = [107,107,116,114,97,100,105,110,103,99,111,46,107,101,114,97,108,97,64,103,109,97,105,108,46,99,111,109];
+const _decode = arr => arr.map(c => String.fromCharCode(c)).join('');
 
 const Contact = () => {
     const [phoneText, setPhoneText] = useState('');
     const [emailText, setEmailText] = useState('');
+    const [name, setName] = useState('');
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         setPhoneText(getPhoneText());
         setEmailText(getEmailText());
     }, []);
 
-    function handleFormSubmit(e) {
-        e.preventDefault();
-        const subject = e.target.elements.subject.value;
-        const body = e.target.elements.body.value;
-        openEmail(subject || 'KK Trading Inquiry', body);
-    }
+    const subject = encodeURIComponent(`KK Trading Inquiry${name ? ' — ' + name : ''}`);
+    const body = encodeURIComponent(message || 'Please describe your requirements: products, quantities, delivery location.');
+    const mailtoHref = `mailto:${_decode(_e)}?subject=${subject}&body=${body}`;
 
     return (
         <section id="contact" className="section contact-section">
@@ -77,21 +79,37 @@ const Contact = () => {
                 </div>
 
                 <div className="contact-form-wrap reveal-up">
-                    <h3>Send an Inquiry</h3>
-                    <form className="contact-form" onSubmit={handleFormSubmit}>
+                    <h3>Send an Enquiry</h3>
+                    <div className="contact-form">
                         <div className="form-group">
-                            <label htmlFor="name">Company / Name</label>
-                            <input type="text" id="name" name="subject" placeholder="Your name or company" required />
+                            <label htmlFor="inq-name">Company / Name</label>
+                            <input
+                                type="text"
+                                id="inq-name"
+                                placeholder="Your name or company"
+                                value={name}
+                                onChange={e => setName(e.target.value)}
+                            />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="message">Requirements</label>
-                            <textarea id="message" name="body" rows="5"
+                            <label htmlFor="inq-msg">Requirements</label>
+                            <textarea
+                                id="inq-msg"
+                                rows="5"
                                 placeholder="Products you need, approximate quantities, delivery location..."
-                                required></textarea>
+                                value={message}
+                                onChange={e => setMessage(e.target.value)}
+                            ></textarea>
                         </div>
-                        <button type="submit" className="btn-primary w-full">Send via Email</button>
-                        <p className="form-note">Opens your email client to send directly to our team.</p>
-                    </form>
+                        <a
+                            href={mailtoHref}
+                            className="btn-primary w-full"
+                            style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}
+                        >
+                            Send via Email
+                        </a>
+                        <p className="form-note">Opens your email client — pre-filled and ready to send.</p>
+                    </div>
                 </div>
             </div>
         </section>
