@@ -9,11 +9,11 @@ const Hero = () => {
             <div className="container hero-inner">
                 <div className="hero-content">
                     <p className="hero-eyebrow">K K Trading Company</p>
-                    <h1 className="hero-title">
+                    <h2 className="hero-title">
                         Rice <span className="hero-amp">&amp;</span> Spices<br />from Kerala
-                    </h1>
+                    </h2>
                     <p className="hero-desc" style={{ marginBottom: '0.5rem' }}>Harvesting Excellence Since Generations</p>
-                    <p className="hero-desc" style={{ fontSize: '1.2rem', opacity: 0.9, marginTop: 0 }}>Wholesalers and exporters in premium quality rice and spices.</p>
+                    <p className="hero-desc" style={{ fontSize: '1.2rem', opacity: 0.9, marginTop: 0 }}>K K Trading Company — wholesalers and exporters of premium quality rice and spices from Kerala, India.</p>
                     <div className="hero-actions">
                         <Link to="/products" className="btn-hero-primary">View Products</Link>
                         <a href="#contact" className="btn-hero-outline">Contact Us</a>
